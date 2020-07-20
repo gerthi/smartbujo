@@ -1,11 +1,64 @@
 <div class="container my-5">
   <h1>
-    <i class="fas fa-heart"></i> Bootstrap Framework <i class="fas fa-heart"></i>
+    <i class="fas fa-heart"></i> smartbujo <i class="fas fa-heart"></i>
   </h1>
-  <h2>
-    Build fast, responsive sites. Discover how to <strong>customize</strong> it!
-  </h2>
   <p>
-    <a class="btn btn-primary" href="https://getbootstrap.com/docs/4.5/getting-started/introduction/">Documentation</a>
+    Select user <select name="user" id="user">
+      <% @users.each do |user|  %>
+      <option><%= user.email %></option>
+      <% end %>
+    </select>
   </p>
+  <a href="/users/sign_up">
+    <button class="btn-outline-dark">+ Add User</button>
+  </a>
+</div>
+<hr>
+<div class="container my-5 d-flex">
+  <div class="left col-6">
+    <h5>New Routine</h5>
+    <label for="name"><strong>Name</strong></label>
+    <input type="text" name="routine_name" id="routine_name">
+    <br>
+    <label for="daily">daily</label>
+    <input type="radio" name="routine_freq" id="routine_daily">
+    <label for="weekly">weekly</label>
+    <input type="radio" name="routine_freq" id="routine_weekly">
+    <br>
+    <button type="submit" class="btn-outline-dark">Create</button>
+  </div>
+  <div class="right col-6">
+    <% @routines.each do |routine| %>
+    <ul class="list-group">
+      <li class="list-group-item"><%= routine.name %>
+        <span class="badge badge-secondary badge-pill"><%= routine.freq_type %></span>
+      </li>
+    </ul>
+    <% end %>
+  </div>
+</div>
+<hr>
+<div class="container my-5 d-flex">
+  <div class="left col-6">
+    <h5>New Task</h5>
+    <label for="name"><strong>Task name</strong></label>
+    <input type="text" name="task_name" id="task_name">
+    <br>
+    <input type="radio" name="task_freq" id="task_monthly">
+    <label for="monthly">monthly</label>
+    <br>
+    <button type="submit" class="btn-outline-dark">Create</button>
+  </div>
+  <div class="right col-6">
+    <% @tasks.each do |task| %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <%= task.name %>
+        <span class="badge badge-secondary badge-pill">
+          <%= task.done ? "done" : "todo" %>
+        </span>
+      </li>
+    </ul>
+    <% end %>
+  </div>
 </div>
