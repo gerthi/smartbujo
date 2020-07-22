@@ -50,11 +50,11 @@
   <div class="right col-6">
     <% @tasks.each do |task| %>
     <ul class="list-group">
-      <li class="list-group-item task <%= task.done ? 'done' : '' %>">
-        <div>
         <%= link_to check_task_path(task) do %>
+      <li class="list-group-item task <%= task.done ? 'done' : '' %>" id="<%= task.id %>">
+        <div>
           <input type="checkbox" id=<%= task.id %> <%= task.done ? 'checked="true"' : '' %>">
-        <% end %>
+        
           <%= task.name %>
           <span class="badge badge-secondary badge-pill">
             <%= task.done ? "done" : "todo" %>
@@ -62,6 +62,7 @@
         </div>
         <%= link_to '<i class="far fa-times-circle"></i>'.html_safe, task_path(task), method: :delete, remote: true %>
       </li>
+      <% end %>
     </ul>
     <% end %>
   </div>

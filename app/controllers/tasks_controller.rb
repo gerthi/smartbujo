@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     set_task
     @task.done = !@task.done
     @task.save
-    redirect_to request.referer
+    redirect_to "/##{Task.last.id}"
   end
 
   def destroy
