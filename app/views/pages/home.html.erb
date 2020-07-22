@@ -38,7 +38,7 @@
   </div>
 </div>
 <hr>
-<div class="container my-5 d-flex">
+<div class="container my-5 d-flex tasks">
   <div class="left col-6">
     <h5>New Task</h5>
     <%= simple_form_for @task do |f| %>
@@ -51,10 +51,13 @@
     <% @tasks.each do |task| %>
     <ul class="list-group">
       <li class="list-group-item">
-        <%= task.name %>
-        <span class="badge badge-secondary badge-pill">
-          <%= task.done ? "done" : "todo" %>
-        </span>
+        <div>
+          <%= task.name %>
+          <span class="badge badge-secondary badge-pill">
+            <%= task.done ? "done" : "todo" %>
+          </span>
+        </div>
+        <%= link_to '<i class="far fa-times-circle"></i>'.html_safe, task_path(task), method: :delete, remote: true %>
       </li>
     </ul>
     <% end %>

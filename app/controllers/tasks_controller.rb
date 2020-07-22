@@ -13,11 +13,19 @@ class TasksController < ApplicationController
 
   # new
 
+  
   # edit
 
   # update
 
   # destroy
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    flash[:notice] = 'Task deleted'
+    redirect_to request.referer
+  end
 
   private
 
