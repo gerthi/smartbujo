@@ -3,6 +3,7 @@ class PagesController < ApplicationController
     @users = User.all
     @routines = Routine.all
     @tasks = Task.all
+    @task = Task.new
   end
 
   def yo
