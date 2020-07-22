@@ -17,16 +17,19 @@ body {
   }
 
   .list-group-item {
-    
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    transition: ease .3s;
+    &:hover {
+      transform: scale(1.051);
+    }
   }
   .fa-times-circle {
     color: red;
     cursor: pointer;
   }
-
+ 
   .done {
     text-decoration-line: line-through;
     color: green;

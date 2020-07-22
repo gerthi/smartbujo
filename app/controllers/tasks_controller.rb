@@ -11,13 +11,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # new
-
-
-  # edit
-
-  # update
-
   def check
     set_task
     @task.done = !@task.done
