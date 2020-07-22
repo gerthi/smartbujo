@@ -38,26 +38,31 @@
   </div>
 </div>
 <hr>
-<div class="container my-5 d-flex">
+<div class="container my-5 d-flex tasks">
   <div class="left col-6">
     <h5>New Task</h5>
-    <label for="name"><strong>Task name</strong></label>
-    <input type="text" name="task_name" id="task_name">
-    <br>
-    <input type="radio" name="task_freq" id="task_monthly">
-    <label for="monthly">monthly</label>
-    <br>
-    <button type="submit" class="btn-outline-dark">Create</button>
+    <%= simple_form_for @task do |f| %>
+    <%= f.input :name, required: true %>
+    <%= f.input :monthly, :label => "Monthly goal" %>
+    <%= f.button :submit, 'Create task', class: "btn-outline-dark" %>
+    <% end %>
   </div>
   <div class="right col-6">
     <% @tasks.each do |task| %>
     <ul class="list-group">
-      <li class="list-group-item">
-        <%= task.name %>
-        <span class="badge badge-secondary badge-pill">
-          <%= task.done ? "done" : "todo" %>
-        </span>
+        <%= link_to check_task_path(task) do %>
+      <li class="list-group-item task <%= task.done ? 'done' : '' %>" id="<%= task.id %>">
+        <div>
+          <input type="checkbox" id=<%= task.id %> <%= task.done ? 'checked="true"' : '' %>">
+        
+          <%= task.name %>
+          <span class="badge badge-secondary badge-pill">
+            <%= task.done ? "done" : "todo" %>
+          </span>
+        </div>
+        <%= link_to '<i class="far fa-times-circle"></i>'.html_safe, task_path(task), method: :delete, remote: true %>
       </li>
+      <% end %>
     </ul>
     <% end %>
   </div>
