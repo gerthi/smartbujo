@@ -13,21 +13,30 @@ class TasksController < ApplicationController
 
   # new
 
-  
+
   # edit
 
   # update
 
-  # destroy
+  def check
+    set_task
+    @task.done = !@task.done
+    @task.save
+    redirect_to request.referer
+  end
 
   def destroy
-    @task = Task.find(params[:id])
+    set_task
     @task.destroy
     flash[:notice] = 'Task deleted'
     redirect_to request.referer
   end
 
   private
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:name, :monthly)
